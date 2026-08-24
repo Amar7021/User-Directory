@@ -3,12 +3,14 @@ import cors from "cors"
 import dotenv from "dotenv"
 import DBConnect from "./db/index.js"
 import userRouter from "./routes/user.routes.js"
+import cookieParser from "cookie-parser";
 
 dotenv.config()
 
 const app = express()
 
 // middlewares
+app.use(cookieParser())
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,

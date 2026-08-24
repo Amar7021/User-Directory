@@ -25,13 +25,20 @@ export const registerUser = async (req, res) => {
             dob
         })
 
+        const accessToken = newUser.generateAccessToken()
 
-        res.status(201).json({
+        const cookieOptions = {
+            sameSite: "none",
+            httpOnly: true,
+            secure: true,
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+        }
+
+        res.status(201).cookie("accessToken", accessToken, cookieOptions).json({
             status: true,
             message: "User registered successfully.",
             user: newUser
         })
-
 
     } catch (error) {
         console.log("Register error: ", error)

@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import jwt from "jsonwebtoken"
 
 const { Schema, model } = mongoose
 
@@ -24,6 +25,16 @@ const userSchema = new Schema({
         max: Date.now,
     }
 }, { timestamps: true })
+
+userSchema.methods.generatAccessToken = function () {
+    return jwt.sign(
+        { _id: this._id },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRY
+        }
+    )
+}
 
 const UserModel = model("User", userSchema)
 
