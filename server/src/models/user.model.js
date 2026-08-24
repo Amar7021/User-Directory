@@ -23,10 +23,11 @@ const userSchema = new Schema({
         required: true,
         min: new Date("1900-01-01"),
         max: Date.now,
-    }
+    },
+    profileImg: String
 }, { timestamps: true })
 
-userSchema.methods.generatAccessToken = function () {
+userSchema.methods.generateAccessToken = function () {
     return jwt.sign(
         { _id: this._id },
         process.env.ACCESS_TOKEN_SECRET,

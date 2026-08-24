@@ -6,7 +6,7 @@ export const registerUser = async (req, res) => {
         firstName = firstName.toLowerCase()
         lastName = lastName.toLowerCase()
 
-        if (!firstName && !lastName && !dob) {
+        if (![firstName, lastName, dob].every(Boolean)) {
             return res.status(400).json({ status: false, message: "All fields are required" })
         }
 
@@ -18,11 +18,16 @@ export const registerUser = async (req, res) => {
                 message: "User already exists with this name."
             })
         }
+        
+        const response = await fetch("https://dog.ceo/api/breeds/image/random")
+        const result = await response.json()
+        const profileImg = result?.message
 
-        const newUser = await User.create({
+        let newUser = await User.create({
             firstName,
             lastName,
-            dob
+            dob,
+            profileImg
         })
 
         const accessToken = newUser.generateAccessToken()
@@ -42,6 +47,35 @@ export const registerUser = async (req, res) => {
 
     } catch (error) {
         console.log("Register error: ", error)
+        res.status(500).json({ message: "Internal server error" })
+    }
+}
+
+export const logoutUser = async (req, res) => {
+    try {
+        return res.status(200).clearCookie("accessToken", {
+            sameSite: "none",
+            httpOnly: true,
+            secure: true,
+        }).json({
+        status: true,
+        message: "Logged out successfully.",
+      });
+    } catch (error) {
+           console.log("Logout error: ", error)
+        res.status(500).json({ message: "Internal server error" })
+    }
+}
+
+export const getUser = async (req, res) => {
+    try {
+        return res.status(200).json({
+            status: true,
+            message: "User details fetched successfully.",
+            user: req.user, 
+        })
+    } catch (error) {
+        console.log("Get user error: ", error)
         res.status(500).json({ message: "Internal server error" })
     }
 }
