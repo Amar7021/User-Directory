@@ -12,7 +12,7 @@ const Input = ({
     ...props
 }) => {
     return (
-        <div className="w-full h-[84px]">
+        <div className="w-full h-[92px]">
             {label && (
                 <label
                     htmlFor={id}
@@ -43,14 +43,14 @@ const Input = ({
                 border-red-500 text-red-500 bg-red-100
                 focus-visible:border-red-500
                 focus-visible:ring-2
-                focus-visible:ring-red-500/20
+                focus-visible:ring-red-500/30
                 placeholder:text-red-500
               `
                         : `
                 border-zinc-300 text-zinc-900 placeholder:text-zinc-400
                 focus-visible:border-zinc-900
-                focus-visible:ring-3
-                focus-visible:ring-zinc-900/10
+                focus-visible:ring-2
+                focus-visible:ring-zinc-900/30
               `
                     }
           disabled:cursor-not-allowed
@@ -60,7 +60,7 @@ const Input = ({
         `}
             />
             {error && (
-                <p className="flex items-center gap-1 text-[11px] text-red-500 text-left ml-1.5 font-medium">
+                <p className="flex items-center gap-1 text-[12px] text-red-500 text-left ml-1.5 font-medium">
                     <CircleAlert className='h-3 w-3' />{error}
                 </p>
             )}

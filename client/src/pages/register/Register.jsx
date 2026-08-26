@@ -53,10 +53,10 @@ const Register = () => {
             <main className="flex items-center justify-center p-6 mt-10">
                 <div className="w-full max-w-md rounded-xl border border-zinc-200 bg-white p-6 shadow-md">
                     <div className="mb-4">
-                        <h1 className="text-2xl font-semibold text-zinc-900">
+                        <h1 className="text-2xl font-semibold text-zinc-900 text-center">
                             Create your account
                         </h1>
-                        <p className="mt-1 text-sm text-zinc-500">
+                        <p className="mt-1 text-sm text-zinc-500 text-center">
                             Enter your details to get started.
                         </p>
                     </div>
