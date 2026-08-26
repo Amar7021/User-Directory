@@ -12,7 +12,7 @@ const Input = ({
     ...props
 }) => {
     return (
-        <div className="w-full h-[80px]">
+        <div className="w-full h-[84px]">
             {label && (
                 <label
                     htmlFor={id}
@@ -33,7 +33,7 @@ const Input = ({
                 aria-invalid={!!error}
                 {...props}
                 className={`
-          w-full rounded-md border
+          w-full rounded-3xl border
           px-3 py-2
           text-sm 
           outline-none
@@ -60,8 +60,8 @@ const Input = ({
         `}
             />
             {error && (
-                <p className="flex gap-1 mt-1 text-xs text-red-500 text-left ml-1.5 font-medium">
-                    <CircleAlert className='h-4 w-4' />{error}
+                <p className="flex items-center gap-1 text-[11px] text-red-500 text-left ml-1.5 font-medium">
+                    <CircleAlert className='h-3 w-3' />{error}
                 </p>
             )}
         </div>

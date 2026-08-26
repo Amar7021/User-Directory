@@ -7,7 +7,7 @@ const Home = () => {
 
     return (
         <section className="flex items-center justify-center pb-10 pt-20">
-            <div className="w-full max-w-md rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
+            <div className="w-full max-w-md rounded-xl border border-zinc-200 bg-white p-6 shadow-md">
                 <div className="flex items-center gap-4">
                     <img
                         src={isUser.profileImg}
